@@ -24,7 +24,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: install brew packages
       run: |
-        brew install gs
+        brew install gs xpdf
     - name: check pdfs are present
       run: |
         find . -name '*.pdf' 
@@ -50,6 +50,7 @@ jobs:
         pwd
         ls pdfs/
         ls -lh pdfs/songbook.pdf
+	pdfinfo -box -meta pdfs/songbook.pdf
         
     - name: upload pdf binary
       continue-on-error: true
