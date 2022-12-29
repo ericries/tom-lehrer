@@ -23,9 +23,16 @@ jobs:
     - name: install brew packages
       run: |
         brew install gs
+    - name: check pdfs are present
+      run: |
+        find . -name '*.pdf' 
+    - name: mkdir 
+      run: |
+          pwd
+          mkdir /tmp/pdfs
+          ls -lh /tmp/pdfs
     - name: build songbook
       run: |
-        mkdir /tmp/pdfs
         find . -name '*.pdf' -exec cp "{}" /tmp/pdfs \;
         cd /tmp/pdfs
         ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=songbook.pdf 
