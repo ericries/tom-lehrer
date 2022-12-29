@@ -13,3 +13,8 @@ cd /tmp/pdfs
 ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=songbook.pdf 
 ls -lh songbook.pdf
 ```
+
+TODOs:
+- use Github Actions to auto-generate songbook 
+- figure out gs parameters to make songbook usable with Amazon KDP
+- host backup copy of website on Pages
