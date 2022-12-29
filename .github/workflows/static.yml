@@ -50,7 +50,7 @@ jobs:
         pwd
         ls pdfs/
         ls -lh pdfs/songbook.pdf
-	pdfinfo -box -meta pdfs/songbook.pdf
+        pdfinfo -box -meta pdfs/songbook.pdf
         
     - name: upload pdf binary
       continue-on-error: true
