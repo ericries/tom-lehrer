@@ -9,4 +9,4 @@ songbook created with gs:
 
 `find . -name '*.pdf' -exec cp "{}" /tmp/pdfs \;`
 
-`ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=merged.pdf `
+`ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=songbook.pdf `
