@@ -31,15 +31,24 @@ jobs:
           pwd
           mkdir /tmp/pdfs
           ls -lh /tmp/pdfs
-    - name: build songbook
+    - name: copy pdfs
       run: |
         find . -name '*.pdf' -exec cp "{}" /tmp/pdfs \;
-        cd /tmp/pdfs
+        ls -lh /tmp/pdfs
+          
+    - name: build songbook
+      run: |
+        cd /tmp/pdfs  
+        ls | sort -f  
         ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=songbook.pdf 
     - name: check songbook is present
       run: |
         ls -lh songbook.pdf
-         
+        cd -
+        pwd
+        cp /tmp/pdfs/songbook.pdf .
+        ls -lh songbook.pdf
+        
     - name: upload pdf binary
       continue-on-error: true
       uses: actions/upload-artifact@v3
