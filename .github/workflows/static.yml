@@ -43,12 +43,12 @@ jobs:
         cd pdfs
         ls | sort -f 
         ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=songbook.pdf 
+        pwd
+        ls -lh songbook.pdf
     - name: check songbook is present
       run: |
-        ls -lh songbook.pdf
         pwd
-        cd ..
-        pwd
+        ls pdfs/
         ls -lh pdfs/songbook.pdf
         
     - name: upload pdf binary
