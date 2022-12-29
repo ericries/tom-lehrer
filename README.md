@@ -10,6 +10,6 @@ songbook created with gs:
 mkdir /tmp/pdfs
 find . -name '*.pdf' -exec cp "{}" /tmp/pdfs \;
 cd /tmp/pdfs
-ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=songbook.pdf 
+ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=songbook.pdf -dPDFX -sColorConversionStrategy=Gray -dDEVICEWIDTHPOINTS=612 -dDEVICEHEIGHTPOINTS=792 -dFIXEDMEDIA -dPDFFitPage -dUseCropBox
 ls -lh songbook.pdf
 ```
