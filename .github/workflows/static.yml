@@ -46,7 +46,9 @@ jobs:
     - name: check songbook is present
       run: |
         ls -lh songbook.pdf
+        pwd
         cd ..
+        pwd
         ls -lh pdfs/songbook.pdf
         
     - name: upload pdf binary
