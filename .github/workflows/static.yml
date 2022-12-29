@@ -1,0 +1,46 @@
+name: build songbook
+
+on:
+  push:
+    tags:
+      - v* 
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: install brew packages
+      run: |
+        brew install gs
+    - name: build songbook
+      run: |
+        mkdir pdfs
+        find . -name '*.pdf' -exec cp "{}" pdfs \;
+        cd pdfs
+        ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=songbook.pdf 
+    - name: check songbook is present
+      run: |
+        ls -lh songbook.pdf
+         
+    - name: upload pdf binary
+      continue-on-error: true
+      uses: actions/upload-artifact@v3
+      with:
+          name: songbook.pdf
+          path: pdfs/songbook.pdf
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: pdfs/songbook.pdf
