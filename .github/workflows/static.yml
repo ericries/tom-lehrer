@@ -40,9 +40,10 @@ jobs:
           
     - name: build songbook
       run: |
+        cp assets/metadata.pdfmark pdfs
         cd pdfs
         ls | sort -f 
-        ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite  -dPDFX -sColorConversionStrategy=Gray -dDEVICEWIDTHPOINTS=612 -dDEVICEHEIGHTPOINTS=792 -dFIXEDMEDIA -dPDFFitPage -dUseCropBox -sOutputFile=songbook.pdf 
+        ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite  -dPDFX -sColorConversionStrategy=Gray -dDEVICEWIDTHPOINTS=612 -dDEVICEHEIGHTPOINTS=792 -dFIXEDMEDIA -dPDFFitPage -dUseCropBox -sOutputFile=songbook.pdf metadata.pdfmark
         pwd
         ls -lh songbook.pdf
     - name: check songbook is present
