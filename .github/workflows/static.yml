@@ -28,39 +28,22 @@ jobs:
     - name: check pdfs are present
       run: |
         find . -name '*.pdf' 
-    - name: mkdir 
-      run: |
-          pwd
-          mkdir pdfs/
-          ls -lh pdfs/
-    - name: copy pdfs
-      run: |
-        find . -name '*.pdf' -exec cp "{}" pdfs/ \;
-        ls -lh pdfs/
-          
     - name: build songbook
       run: |
-        cp assets/metadata.pdfmark pdfs/__metadata.pdfmark
-        cd pdfs
-        ls | sort -f 
-        ls | sort -f | xargs gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite  -dPDFX -sColorConversionStrategy=Gray -dDEVICEWIDTHPOINTS=612 -dDEVICEHEIGHTPOINTS=792 -dFIXEDMEDIA -dPDFFitPage -dUseCropBox -sOutputFile=songbook.pdf
-        pwd
-        ls -lh songbook.pdf
+        sh scripts/gs.sh songbook.pdf
     - name: check songbook is present
       run: |
-        pwd
-        ls pdfs/
-        ls -lh pdfs/songbook.pdf
-        pdfinfo -box -meta pdfs/songbook.pdf
+        ls -lh songbook.pdf
+        pdfinfo -box -meta songbook.pdf
         
     - name: upload pdf binary
       continue-on-error: true
       uses: actions/upload-artifact@v3
       with:
           name: songbook.pdf
-          path: pdfs/songbook.pdf
+          path: songbook.pdf
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: pdfs/songbook.pdf
+        files: songbook.pdf
