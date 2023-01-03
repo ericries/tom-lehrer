@@ -28,6 +28,9 @@ jobs:
     - name: check pdfs are present
       run: |
         find . -name '*.pdf' 
+    - name: build frontmatter
+      run: |
+        sh scripts/frontmatter.sh
     - name: build songbook
       run: |
         sh scripts/gs.sh songbook.pdf
