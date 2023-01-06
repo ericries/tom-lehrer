@@ -9,6 +9,7 @@ sh scripts/toc.sh > assets/toc.pdfmark
 echo "Generating markdown TOC as asset/toc.md"
 sh scripts/tocmd.sh > assets/toc.md
 
+# thanks https://stackoverflow.com/questions/39994410/ghostscript-wont-convert-pdf-to-pdf-a-annotation-issue
 echo "Generating assets/frontmatter.pdf from assets/Title.pdf"
 gs -dPDFA=2 -dBATCH -dNOPAUSE -dPDFACompatibilityPolicy=1 -q -sProcessColorModel=DeviceGray -sDEVICE=pdfwrite -sOutputFile=assets/frontmatter.pdf -f assets/Title.pdf
 pdfinfo assets/frontmatter.pdf
