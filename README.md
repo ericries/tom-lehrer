@@ -59,7 +59,6 @@ TODOs:
 - host backup copy of website on Github Pages
 - add metadata to PDF generation using gs - DONE assets/metadata.pdfmark
 - use gs to add page numbers to songbook on alternating pages - DONE using gs, see scripts/gs.sh
-- create good-looking frontmatter and title page
 - do a proper title sort rather than primitive sort -f - DONE using sed
 - add pdfmark TOC to final PDF with correct page numbers - DONE see scripts/toc.sh
 - generate TOC in PDF form, add to frontmatter with correct page numbers - DONE using pandoc, see scripts/gentoc.sh
@@ -67,3 +66,6 @@ TODOs:
 - refactor bash scripts to reuse common bits instead of copy-paste
 - render the public domain disclaimer for print and add to PDF - DONE,  see scripts/frontmatter.sh
 - explore other print-on-demand publishers other than KDP, perhaps lulu.com
+- create basic frontmatter (title page, disclaimer, TOC) - DONE
+- create good-looking frontmatter and title page 
+- convert assets/frontmatter.pdf to PDF/X 
