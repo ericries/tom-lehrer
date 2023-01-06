@@ -2,6 +2,8 @@
 % by Tom Lehrer
 
 
+\thispagestyle{empty}
+
 Frontmatter \dotfill &nbsp; 1
 
 Disclaimer \dotfill &nbsp; 2

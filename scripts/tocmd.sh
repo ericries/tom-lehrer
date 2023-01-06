@@ -12,6 +12,8 @@ echo "$@" | awk 'BEGIN{split("a the to at in on from with and but or of is",w); 
 
 echo "% Songs and Lyrics\n% by Tom Lehrer\n\n"
 
+# courtesy of https://tex.stackexchange.com/questions/44280/pagestyleempty-doesnt-seem-to-work-for-page-with-maketitle/44281#44281
+printf '\\thispagestyle{empty}\n\n'
 
 runningcount=1
 while IFS= read -r line ; do
