@@ -27,6 +27,7 @@ echo "using TOC from assets/toc.pdfmark, generate with scripts/toc.sh"
 # page numbers courtesy of https://stackoverflow.com/questions/59597599/how-to-add-page-numbers-opposite-the-bound-edge-with-postscript-ghostscript
 echo "adding page numbers"
 
+# font embedding courtesy of https://stackoverflow.com/questions/41205112/ghostscript-stubbornly-refuses-to-embed-fonts
 
 # front matter must be first PDF specified. metadata must be last
 echo "running gs to generate songbook filename: $output_file"
@@ -48,7 +49,7 @@ gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="$output_file" -dPDFX -sC
                 } if
             } bind
         >>
-        setpagedevice' -f assets/toc.pdfmark assets/frontmatter.pdf assets/Disclaimer.pdf assets/Table-of-Contents.pdf $listfiles assets/metadata.pdfmark 
+        setpagedevice' -c "<</NeverEmbed []>> setdistillerparams" -f assets/toc.pdfmark assets/frontmatter.pdf assets/Disclaimer.pdf assets/Table-of-Contents.pdf $listfiles assets/metadata.pdfmark 
 
 echo "complete. songbook $output_file metadata:"
 ls -lh $output_file
